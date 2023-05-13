@@ -1,0 +1,45 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout>
+  <main>
+    <section>
+      <ul class="flex flex-col gap-4">
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}/`} class="w-full flex flex-col">
+                <div class="flex w-full items-baseline gap-2">
+                  <p class="font-bold">{post.data.title}</p>
+                  {post.data.tags && (
+                    <ul class="flex gap-1 items-baseline">
+                      {post.data.tags.map((tag, i) => (
+                        <li class="dark:text-neutral-400 font-serif text-sm">
+                          {tag} {i === post.data.tags!.length - 1 ? "" : "·"}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                <p class="font-light text-sm">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

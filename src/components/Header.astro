@@ -1,0 +1,15 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<header class="mb-8">
+	<h2 class="font-extrabold mb-2 font-serif text-xl">
+		{SITE_TITLE}
+	</h2>
+	<nav class="flex gap-1 -mx-2">
+		<HeaderLink href="/">Home</HeaderLink>
+		<HeaderLink href="/blog">Blog</HeaderLink>
+		<HeaderLink href="/about">About Me</HeaderLink>
+	</nav>
+</header>

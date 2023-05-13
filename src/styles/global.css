@@ -1,0 +1,16 @@
+a {
+  @apply dark:text-blue-300;
+  @apply text-blue-800;
+}
+img {
+  @apply max-w-full;
+  @apply h-auto;
+}
+code {
+  @apply px-2;
+  @apply py-[1px];
+  @apply rounded;
+  @apply dark:bg-neutral-800;
+  @apply bg-neutral-800;
+  @apply text-neutral-300;
+}
